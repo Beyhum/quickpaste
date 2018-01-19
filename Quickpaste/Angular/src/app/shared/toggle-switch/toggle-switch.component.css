@@ -1,0 +1,8 @@
+.switch-toggle {
+    background-color: white;
+    border: 1px solid #e6e6e6;
+}
+.switch-toggle label {
+    color: #e6e6e6;
+    font-weight: 450;
+}

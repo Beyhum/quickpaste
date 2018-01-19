@@ -1,0 +1,52 @@
+<form [formGroup]="setupAccountForm" (ngSubmit)="setupAccount()" class="well col-xs-12 col-sm-4 col-sm-offset-4">
+  <fieldset>
+    <legend>Setup Account</legend>
+
+    <div class="form-group row">
+      <label for="default_username" class="control-label col-xs-12 required">Default Username (in appsettings.json)</label>
+      <div class="col-xs-12">
+        <input formControlName="default_username" type="text" class="form-control" autocapitalize="none" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="default_passcode" class="control-label col-xs-12 required">Default Passcode</label>
+      <div class="col-xs-12">
+        <input formControlName="default_passcode" type="password" class="form-control" />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="username" class="control-label col-xs-12 required">Your Username</label>
+      <div class="col-xs-12">
+        <input formControlName="username" type="text" class="form-control" autocapitalize="none" />
+      </div>
+    </div>
+
+    <div class="form-group row" formGroupName="passwordGroup">
+      <label for="password" class="control-label col-xs-12 required">Your Password</label>
+      <div class="col-xs-12">
+        <input formControlName="password" type="password" class="form-control" />
+      </div>
+
+      <label for="confirm_password" class="control-label col-xs-12 required">Confirm Password</label>
+      <div class="col-xs-12">
+        <input formControlName="confirm_password" type="password" class="form-control" />
+      </div>
+      <div>
+        <em class="errorInfo col-md-12" *ngIf="passwordConfirmed.touched && setupAccountForm.get('passwordGroup').getError('validatePasswords') as error">
+          {{error}}
+        </em>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-xs-12">
+        <button type="submit" [disabled]="setupAccountForm.invalid" class="btn btn-primary col-xs-12">Register</button>
+      </div>
+    </div>
+
+  </fieldset>
+</form>
+
+<div class="well col-xs-12 col-sm-4 col-sm-offset-4" id="register-prompt">
+  <a routerLink="/login">Click here</a> if you've already setup an account
+</div>

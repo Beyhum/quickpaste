@@ -1,0 +1,29 @@
+<!-- <div class="option-buttons">
+    <div class="row">
+        <div class="col-xs-12">
+            <button [disabled]="page <= 1" (click)="previousPage()" class="btn btn-default">
+                <span class="glyphicon glyphicon-menu-left"></span>
+            </button>
+            <button [disabled]="!nextExists" (click)="nextPage()" class="btn btn-default">
+                <span class="glyphicon glyphicon-menu-right"></span>
+            </button>
+        </div>
+    </div>
+</div>
+<hr> -->
+
+<paste-element *ngFor="let paste of pasteList" [paste]="paste"></paste-element>
+
+<hr>
+<div *ngIf="page >= 2 || pasteList.length >= limit" class="option-buttons">
+    <div class="row">
+        <div class="col-xs-12">
+            <button [disabled]="page <= 1" (click)="previousPage()" class="btn btn-default">
+                <span class="glyphicon glyphicon-menu-left"></span>
+            </button>
+            <button [disabled]="!nextExists" (click)="nextPage()" class="btn btn-default">
+                <span class="glyphicon glyphicon-menu-right"></span>
+            </button>
+        </div>
+    </div>
+</div>

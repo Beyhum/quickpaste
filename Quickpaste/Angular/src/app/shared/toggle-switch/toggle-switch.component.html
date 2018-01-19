@@ -1,0 +1,9 @@
+<div class="switch-toggle alert alert-light" >
+  <input id="onRadio" #onRadio type="radio" [checked]="isOn">
+  <label for="onRadio" (click)="switchClicked(true)">{{this.onText}}</label>
+
+  <input id="offRadio" #offRadio type="radio" [checked]="!isOn">
+  <label for="offRadio" (click)="switchClicked(false)">{{this.offText}}</label>
+  <a id="toggleBtn" class="btn btn-primary" ></a>
+
+</div>

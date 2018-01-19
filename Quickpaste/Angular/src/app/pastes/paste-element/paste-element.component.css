@@ -1,0 +1,46 @@
+.date {
+    text-align: right;
+}
+
+.panel-heading:hover {
+    cursor: pointer;
+}
+
+#message {
+    overflow: hidden;
+}
+#message pre {
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+}
+
+.message-cropped {
+    max-height: 9.9em;
+}
+.menu-toggled {
+    transform: rotate(180deg);
+}
+#message-container {
+    position: relative;
+}
+
+.glyphicon.glyphicon-menu-down {
+    font-size: 1.5em;    
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    cursor: pointer;
+    top: auto;
+}
+
+.shared-link-modal a {
+    word-wrap: break-word;
+}
+.shared-link-modal input {
+    width: 3em;
+}
+.shared-link-modal div {
+    margin-top: 15px;
+}
+

@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./styles/bootstrap-3.3.7/dist/css/bootstrap.min.css";
+@import "../node_modules/ngx-toastr/toastr.css";
+@import "../node_modules/css-toggle-switch/dist/toggle-switch.css";
+body {
+    padding-top: 90px;
+    background-color: #fafafa;
+    
+}
+
+.jumbotron {
+    border: 1px solid #e6e6e6;
+    background-color: white;
+}
+
+.form-control {
+    background-color: #fafafa;
+}
+
+/* Detect edge */
+@supports (-ms-ime-align: auto) {
+    .form-control {
+          height: 45px;
+    }
+  }

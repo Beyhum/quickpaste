@@ -1,0 +1,33 @@
+.error-message {
+    text-align: center;
+}
+
+#outer-container {
+    min-height: 80%;
+    min-height: 80vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.glyphicon.glyphicon-menu-left {
+    top: 2px;
+}
+
+#side-options > .btn {
+    text-align: right;
+    margin-left: -6px;
+}
+
+#side-options {
+    text-align: right;
+}
+
+
+.side-block {
+    margin-right: 10px;
+    width: 3px;
+    height: 3em;
+    float:left;
+    
+}

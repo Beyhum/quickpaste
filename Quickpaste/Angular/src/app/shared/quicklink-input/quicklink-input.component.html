@@ -1,0 +1,20 @@
+<div [formGroup]="parentForm" class="form-group row">
+  <label for="quickLink" class="control-label col-md-1 required">Quick Link</label>
+  <div class="col-md-10">
+    <div class="input-group">
+      <span (click)="this.generateRandomLink()" class="input-group-addon">
+        <span class="glyphicon glyphicon-retweet"></span>
+      </span>
+      <input #quickLinkInput [formControlName]="quickLinkControlName" id="quickLink" type="text" class="form-control" autocapitalize="none" />
+      
+      <span class="input-group-btn">
+        <button (click)="clearQuickLink()" class="btn btn-default" type="button" tabindex="-1">Clear</button>
+      </span>
+    </div>
+  </div>
+  <div class="col-md-11 col-md-offset-1">
+    <em class="errorInfo" *ngIf="parentForm.controls.quick_link?.getError('validateQuickLink') as error">
+      {{error}}
+    </em>
+  </div>
+</div>

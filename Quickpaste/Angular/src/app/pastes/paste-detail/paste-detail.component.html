@@ -1,0 +1,33 @@
+<div *ngIf="errorMessage" id="outer-container">
+  <div class="jumbotron">
+    <h1 class="error-message">
+      {{errorMessage}}
+    </h1>
+  </div>
+</div>
+<h3 class="alert" *ngIf="errorMessage"></h3>
+
+<div *ngIf="paste">
+  <div class="row">
+
+    <div class="btn-group col-xs-4 col-md-1">
+      <a (click)="goBack()" class="btn btn-default">
+        <span class="glyphicon glyphicon-menu-left"></span>Back
+      </a>
+    </div>
+    <div *ngIf="authService.isAuthenticated()" id="side-options" class="col-xs-8 col-md-11">
+      <a (click)="deletePaste()" class="btn btn-default">
+        <span class="glyphicon glyphicon-trash"></span>
+      </a>
+    </div>
+  </div>
+  <hr>
+
+  <paste-element [paste]="paste"></paste-element>
+
+  <h3>
+    <span class="side-block bg-primary"></span>
+    <h3>{{paste.is_public? "Public" : "Private"}}</h3>
+  <h3>{{paste.created_at | date:"medium"}}</h3>
+  </h3>
+</div>

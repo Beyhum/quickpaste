@@ -1,0 +1,43 @@
+<div class="jumbotron">
+  <form [formGroup]="newUploadLinkForm" (ngSubmit)="createUploadLink(newUploadLinkForm.value)" autocomplete="off">
+    <fieldset>
+      <legend>Create Upload Link</legend>
+
+      <quicklink-input [parentForm]="newUploadLinkForm" quickLinkControlName="quick_link"></quicklink-input>
+
+      <div class="form-group row">
+        <label class="control-label col-md-1">Files</label>
+        <div class="col-md-4">
+          <toggle-switch formControlName="allow_file" [isOn]="defaultAllowFile" onText="Allow File" offText="Message Only"></toggle-switch>
+        </div>
+      </div>
+
+      <div class="col-md-offset-1">
+        <button type="submit" [disabled]="newUploadLinkForm.invalid" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+      </div>
+    </fieldset>
+  </form>
+
+</div>
+<hr>
+
+
+<div class="well col-xs-12" *ngFor="let uploadLink of uploadLinks">
+  <div id="info">
+    <span title="Copy link" [clipboard-copy]="getFullUrl(uploadLink.quick_link)" class="glyphicon glyphicon-paperclip clipboard-action">
+    </span>
+    <a [routerLink]="['/u', uploadLink.quick_link]" target="_blank" class="ellipsis">
+      {{uploadLink.quick_link}}
+    </a>
+    <div>
+      {{uploadLink.allow_file ? "Allow File" : "Message Only"}}
+    </div>
+  </div>
+  <div id="delete-button">
+    <a (click)="deleteUploadLink(uploadLink.quick_link)" class="btn btn-default">
+      <span class="glyphicon glyphicon-trash"></span>
+    </a>
+  </div>
+</div>
+

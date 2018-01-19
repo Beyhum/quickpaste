@@ -1,0 +1,33 @@
+
+<div *ngIf="uploadLink" class="col-md-12 jumbotron">
+    <form [formGroup]="newPasteForm" (ngSubmit)="createPaste(newPasteForm.value)" autocomplete="off">
+      <fieldset>
+        <legend>Create Paste</legend>
+  
+          
+        <div class="form-group row">
+          <label for="message" class="control-label col-md-1">Message</label>
+          <div class="col-md-10">
+            <textarea autofocus formControlName="message" id="message" type="text" class="form-control"></textarea>
+          </div>
+        </div>
+  
+        <div *ngIf="allowFile" class="form-group row">
+          <label for="file_to_upload" class="col-md-1 control-label">File</label>
+          <div class="col-md-10">
+            <input type="file" (change)="fileChange($event)" id="file_to_upload" class="form-control">
+          </div>
+          <div class="col-md-11 col-md-offset-1">
+            <em class="errorInfo" *ngIf="newPasteForm.controls.file_to_upload?.getError('validateFile') as error">
+              {{error}}
+            </em>
+          </div>
+        </div>
+  
+        <div class="col-md-offset-1">
+          <button type="submit" [disabled]="newPasteForm.invalid" class="btn btn-primary">Save</button>
+          <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+        </div>
+      </fieldset>
+    </form>
+  </div>

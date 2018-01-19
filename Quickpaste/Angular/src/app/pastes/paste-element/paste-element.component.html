@@ -1,0 +1,63 @@
+<div class="panel panel-default">
+  <div class="panel-heading" [routerLink]="['/pastes', paste.quick_link]">
+    <div class="row">
+      <span class="ellipsis col-xs-7 col-sm-10">
+        {{paste.quick_link}}
+      </span>
+      <span class="date col-xs-5 col-sm-2">{{paste.created_at | date}}</span>
+    </div>
+  </div>
+  <div class="panel-body">
+
+    <div *ngIf="paste.blob_url !== null">
+      <div *ngIf="paste.is_public">
+        <span title="Copy link" [clipboard-copy]="paste.blob_url" class="glyphicon glyphicon-paperclip clipboard-action"></span>
+        <a href="{{paste.blob_url}}" target="_blank">
+          <span class="ellipsis">{{paste.blob_url}}</span>
+        </a>
+      </div>
+
+      <div *ngIf="!paste.is_public">
+        <span title="Download" (click)="sharedLinkModal.open()" class="glyphicon glyphicon-share-alt clipboard-action"></span>
+        <a (click)="downloadPasteBlob(paste.id)">
+          <span class="ellipsis">{{paste.blob_url}}</span>
+        </a>
+        <span> (Private)</span>
+
+      </div>
+    </div>
+
+    <hr *ngIf="paste.message !== null && paste.blob_url !== null">
+
+    <div id="message-container" *ngIf="paste.message !== null">
+      <span title="Copy text" [clipboard-copy]="paste.message" class="glyphicon glyphicon-copy clipboard-action"></span>
+      <div #messageElement id="message" [ngClass]="{'message-cropped': messageIsCropped}">
+        <pre>{{paste.message}}</pre>
+      </div>
+      <span title="Expand" *ngIf="textIsOverflow" (click)="toggleCrop()" class="glyphicon glyphicon-menu-down" [ngClass]="{'menu-toggled': !messageIsCropped}"></span>
+
+    </div>
+  </div>
+</div>
+
+
+<bs-modal id="modal-with-clipboard" #sharedLinkModal (onOpen)="initializeSharedLink()" (onDismiss)="initializeSharedLink()" class="shared-link-modal">
+  <bs-modal-header [showDismiss]="true">
+    <h4 class="modal-title ellipsis">Get shared link for {{paste.quick_link}}</h4>
+  </bs-modal-header>
+  <bs-modal-body>
+    <p>Anyone with a shared link can access your private file until the link expires.</p>
+    <div>
+      <span>Link duration in minutes:</span>
+      <input type="number" min="1" [value]="sharedLinkDuration" (mouseup)="onDurationChanged($event)" (keyup)="onDurationChanged($event)">
+    </div>
+    <div [hidden]="!sharedLink">
+      <span title="Copy link" [clipboard-copy]="sharedLink" [clipboard-target]="sharedLinkElement" class="glyphicon glyphicon-paperclip clipboard-action"></span>
+      <a #sharedLinkElement href="{{sharedLink}}" target="_blank">{{sharedLink}}
+      </a>
+    </div>
+  </bs-modal-body>
+  <bs-modal-footer>
+    <button type="button" class="btn btn-primary" (click)="generateSharedLink()">Generate</button>
+  </bs-modal-footer>
+</bs-modal>

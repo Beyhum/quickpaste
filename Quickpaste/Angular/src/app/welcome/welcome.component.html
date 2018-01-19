@@ -1,0 +1,34 @@
+<div class="jumbotron">
+  <h1>Welcome to Quickpaste</h1>
+  <p>
+    Did you get a link to this site? Then someone wants you to send them a "paste" (file/text), or share one with you.
+  </p>
+
+  <form (ngSubmit)="goToUploadLink()">
+    <h3 class="control-label col-md-12">Send a paste</h3>
+    <div class="input-group col-md-12">
+      <input (keyup)="onUploadLinkChanged($event)" placeholder="Code to create a paste (e.g. abc123)" type="text" class="form-control"
+        autocapitalize="none">
+
+      <span class="input-group-btn">
+        <button type="submit" [disabled]="!uploadLink" class="btn btn-default" tabindex="-1">Go</button>
+      </span>
+    </div>
+  </form>
+
+  <form (ngSubmit)="goToPaste()">
+    <h3 class="control-label col-md-12">Find a paste</h3>
+    <div class="input-group">
+      <input (keyup)="onpasteQuickLinkChanged($event)" placeholder="Code to find a paste (e.g. abc123)" type="text" class="form-control"
+        autocapitalize="none">
+
+      <span class="input-group-btn">
+        <button type="submit" [disabled]="!pasteQuickLink" class="btn btn-default" tabindex="-1">Go</button>
+      </span>
+    </div>
+  </form>
+
+  <p id="footnote">
+    PS: You don't have to log in, all you need is a valid code!
+  </p>
+</div>
