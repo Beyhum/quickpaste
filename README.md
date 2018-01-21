@@ -23,6 +23,12 @@ However, you can run Quickpaste as an executable without installing the .NET Run
 - Customize links or have them automatically generated
 - Save files in local database or using cloud storage
 
+## How to Use
+- You have 1 User Account per Quickpaste server 
+- A User can create Pastes or Upload Links (used to create a Paste without being authenticated)
+- To request a paste from someone, create an Upload Link and send them its URL. The URL will allow anyone to create 1 Paste
+- You can also enter the Upload Link's QuickLink field as a code in the Welcome page to create a Paste 
+
 ## Technologies Used
 - ASP.NET Core 2
 - Angular 4

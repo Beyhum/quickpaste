@@ -6,8 +6,12 @@ import { Router } from '@angular/router';
   templateUrl: './welcome.component.html',
   styles: [
     `
-    h1 {
+    #welcome-title {
       margin-top: 0px;
+      font-weight: 400;
+    }
+    form > h3 {
+      padding-left: 0px;
     }
     p {
       font-size: 1.2em;

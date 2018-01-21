@@ -1,13 +1,15 @@
 <div class="jumbotron">
-  <h1>Welcome to Quickpaste</h1>
+  <h3 id="welcome-title">Welcome to Quickpaste</h3>
   <p>
     Did you get a link to this site? Then someone wants you to send them a "paste" (file/text), or share one with you.
+    <br>
+    If you own this site, <a routerLink="/login">login</a> to get started.
   </p>
 
   <form (ngSubmit)="goToUploadLink()">
-    <h3 class="control-label col-md-12">Send a paste</h3>
+    <h3 class="control-label col-md-12">Send a paste to the owner</h3>
     <div class="input-group col-md-12">
-      <input (keyup)="onUploadLinkChanged($event)" placeholder="Code to create a paste (e.g. abc123)" type="text" class="form-control"
+      <input (keyup)="onUploadLinkChanged($event)" placeholder="Enter the code you received (e.g. abc123)" type="text" class="form-control"
         autocapitalize="none">
 
       <span class="input-group-btn">
