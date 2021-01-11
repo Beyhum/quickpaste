@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quickpaste", "Quickpaste\Quickpaste.csproj", "{95A63E5B-D5BF-4C8F-84A6-0B91F27581CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quickpaste", "Quickpaste\Quickpaste.csproj", "{95A63E5B-D5BF-4C8F-84A6-0B91F27581CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickpasteTests", "QuickpasteTests\QuickpasteTests.csproj", "{A55A4D03-63CF-4EA2-B4E7-0E09C01F141C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{95A63E5B-D5BF-4C8F-84A6-0B91F27581CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95A63E5B-D5BF-4C8F-84A6-0B91F27581CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95A63E5B-D5BF-4C8F-84A6-0B91F27581CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A55A4D03-63CF-4EA2-B4E7-0E09C01F141C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A55A4D03-63CF-4EA2-B4E7-0E09C01F141C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A55A4D03-63CF-4EA2-B4E7-0E09C01F141C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A55A4D03-63CF-4EA2-B4E7-0E09C01F141C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -34,7 +34,7 @@ namespace Quickpaste.Models
         }
 
         /// <summary>
-        /// Creates a new Paste object with ID null to create/persist to the database
+        /// Creates a new Paste object with a random GUID string ID to create/persist to the database
         /// </summary>
         /// <param name="quickLink"></param>
         /// <param name="message"></param>
@@ -44,7 +44,7 @@ namespace Quickpaste.Models
         public static Paste ToCreate(string quickLink, string message, string blobUrl, bool isPublic)
         {
 
-            return new Paste(null, quickLink, message, blobUrl, isPublic, DateTimeOffset.Now);
+            return new Paste(Guid.NewGuid().ToString(), quickLink, message, blobUrl, isPublic, DateTimeOffset.Now);
         }
 
 

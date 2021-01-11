@@ -7,7 +7,6 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
@@ -19,10 +18,10 @@ namespace Quickpaste
         public static void Main(string[] args)
         {
 
-            BuildWebHost(args).Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args)
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
             return new WebHostBuilder()
                 .UseKestrel()
@@ -46,8 +45,7 @@ namespace Quickpaste
                 })
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseUrls(GetAppHostUrls(args))
-                .Build();
+                .UseUrls(GetAppHostUrls(args));
         }
 
         private static string[] GetAppHostUrls(string[] args)
@@ -80,7 +78,7 @@ namespace Quickpaste
         /// The Key's value is a random HMACSHA256 key encoded as a base 64 string
         /// </summary>
         /// <param name="hostingEnvironment"></param>
-        private static void GenerateAuthTokenKeyIfNotExists(IHostingEnvironment hostingEnvironment)
+        private static void GenerateAuthTokenKeyIfNotExists(IWebHostEnvironment hostingEnvironment)
         {
             IConfigurationRoot configuration = GetTempConfiguration();
             bool keyExists = !string.IsNullOrWhiteSpace(configuration["Auth:Key"]);

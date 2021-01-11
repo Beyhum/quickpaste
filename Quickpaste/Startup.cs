@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -61,15 +62,16 @@ namespace Quickpaste
             );
 
             
-            services.AddMvc().AddJsonOptions(options =>
+            services.AddControllersWithViews().AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IOptions<HostingSettings> hostingSettings, AppDbContext dbContext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IOptions<HostingSettings> hostingSettings, AppDbContext dbContext)
         {
+            app.UseRouting();
 
             if (hostingSettings.Value.RequireSSL)
             {
@@ -100,21 +102,21 @@ namespace Quickpaste
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
+
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseStaticFiles();
 
             app.HandleBlobStoragePath(Configuration);
-
-            app.UseMvc(routes =>
+            
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "api/{controller}/{id?}");
-                // add route for index page which serves the angular application
-                routes.MapSpaFallbackRoute(
-                    name: "spa-route",
-                    defaults: new { controller = "Home", action = "Index" });
+                    pattern: "api/{controller}/{id?}");
+            // add route for index page which serves the angular application
+            endpoints.MapFallbackToController("Index", "Home");
             });
         }
     }
