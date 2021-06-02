@@ -7,7 +7,7 @@ Anyone hosting a Quickpaste web app on their machine/server has full control ove
 You can choose to make your pastes public or private, and even temporarily share them with others.
 
 
-Quickpaste uses the [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/) web framework and runs on [the .NET Core 2 Runtime](https://www.microsoft.com/net/download).
+Quickpaste uses the [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/) web framework and runs on [the .NET Core 5 Runtime](https://www.microsoft.com/net/download).
 However, you can run Quickpaste as an executable without installing the .NET Runtime if you have Windows 7/8.1/10 or Ubuntu 14.04/16.04.
 
 
@@ -30,8 +30,8 @@ However, you can run Quickpaste as an executable without installing the .NET Run
 - You can also enter the Upload Link's QuickLink field as a code in the Welcome page to create a Paste 
 
 ## Technologies Used
-- ASP.NET Core 2
-- Angular 4
+- ASP.NET Core 5
+- Angular 5
 - SQLite
 - Webpack
 - Bootstrap 3.3.7

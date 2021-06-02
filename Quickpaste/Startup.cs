@@ -41,11 +41,10 @@ namespace Quickpaste
             services.AddSingleton(Configuration);
 
             services.Configure<HostingSettings>(Configuration.GetSection("Hosting"));
-            using (var serviceProvider = services.BuildServiceProvider())
-            {
-                CoreServicesSetup.CheckConfigSettings(serviceProvider.GetService<IOptions<HostingSettings>>());
+            
+            var hostingSettings = Configuration.GetSection("Hosting").Get<HostingSettings>();
+            CoreServicesSetup.CheckConfigSettings(Options.Create(hostingSettings));
 
-            }
 
             services.AddAuth(Configuration);
 

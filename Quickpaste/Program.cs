@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace Quickpaste
@@ -21,31 +22,23 @@ namespace Quickpaste
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        public static IHostBuilder CreateWebHostBuilder(string[] args)
         {
-            return new WebHostBuilder()
-                .UseKestrel()
+            
+            return Host.CreateDefaultBuilder()
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .ConfigureAppConfiguration((hostingContext, config) =>
+                .ConfigureWebHostDefaults(webHostBuilder =>
                 {
-                    var currentEnvironment = hostingContext.HostingEnvironment;
-                    GenerateAuthTokenKeyIfNotExists(currentEnvironment);
-
-                    config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                    .AddJsonFile($"appsettings.{currentEnvironment.EnvironmentName}.json", optional: true, reloadOnChange: true)
-                    .AddEnvironmentVariables()
-                    .AddUserSecrets<Startup>()
-                    .AddCommandLine(args);
-                })
-                .ConfigureLogging((hostingContext, logging) =>
-                {
-                    logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
-                    logging.AddConsole();
-                    logging.AddDebug();
-                })
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .UseUrls(GetAppHostUrls(args));
+                    webHostBuilder.ConfigureAppConfiguration((hostingContext, config) =>
+                    {
+                        var currentEnvironment = hostingContext.HostingEnvironment;
+                        GenerateAuthTokenKeyIfNotExists(currentEnvironment);
+                    });
+                    
+                    webHostBuilder.UseStartup<Startup>();
+                    webHostBuilder.UseIISIntegration();
+                    webHostBuilder.UseUrls(GetAppHostUrls(args));
+                });
         }
 
         private static string[] GetAppHostUrls(string[] args)
